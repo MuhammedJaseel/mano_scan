@@ -34,7 +34,7 @@ function App() {
   const [utc, setutc] = useState("");
 
   useEffect(() => {
-    setTimeout(() => {
+    setInterval(() => {
       loadData();
     }, 5000);
     setInterval(() => {
@@ -44,6 +44,7 @@ function App() {
   }, []);
 
   const apiBase = "https://manoscan-api.vercel.app/api/";
+  // const apiBase = "http://localhost:4511/api/";
   const loadData = async () => {
     try {
       axios.get(apiBase + "accounts").then((res) => {
