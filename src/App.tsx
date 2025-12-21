@@ -99,6 +99,7 @@ function App() {
             <div>Block Hash: {showHex(it?.bh)}</div>
             <div>Parent Hash: {showHex(it?.ph)}</div>
             <div>Balance: {ethers.formatEther(it?.bu || "0x0")}</div>
+            <div>Txn Count: {it?.txns?.length}</div>
           </div>
         ))}
       </div>
