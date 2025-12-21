@@ -34,17 +34,18 @@ function App() {
   const [utc, setutc] = useState("");
 
   useEffect(() => {
-    setInterval(() => {
-      loadData();
-    }, 5000);
+    loadData();
+    // setInterval(() => {
+    //   loadData();
+    // }, 5000);
     setInterval(() => {
       const now = new Date();
-      setutc(now.toISOString().slice(0,19));
+      setutc(now.toISOString().slice(0, 19));
     }, 1000);
   }, []);
 
-  const apiBase = "https://manoscan-api.vercel.app/api/";
-  // const apiBase = "http://localhost:4511/api/";
+  // const apiBase = "https://manoscan-api.vercel.app/api/";
+  const apiBase = "http://localhost:4511/api/";
   const loadData = async () => {
     try {
       axios.get(apiBase + "accounts").then((res) => {
