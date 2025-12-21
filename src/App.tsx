@@ -47,9 +47,9 @@ function App() {
   return (
     <div className="w-screen flex justify-center items-start p-3 gap-3 flex-wrap">
       <div className="w-full max-w-100">
-        <div className="text-[28px] font-bold p-1">
-          Latest accounts {accounts.busy ? "Loading..." : ""}
-          <div className="text-sm font-[400]">Current time:&nbsp;{new Date().toISOString()}</div>
+        <div className="p-1">
+          <span className="text-[28px] font-bold">Latest accounts</span> {accounts.busy ? "Loading..." : ""}
+          <div className="text-sm">Current time:&nbsp;{new Date().toISOString()}</div>
         </div>
         {accounts.data.map((it: any, k) => (
           <div
@@ -71,9 +71,9 @@ function App() {
         ))}
       </div>
       <div className="w-full max-w-100">
-        <div className="text-[28px] font-bold p-1">
-          Latest transactions {transactions.busy ? "Loading..." : ""}
-          <div className="text-sm font-[400]">Current time:&nbsp;{new Date().toISOString()}</div>
+        <div className="p-1">
+          <span className="text-[28px] font-bold">Latest transactions</span> {transactions.busy ? "Loading..." : ""}
+          <div className="text-sm">Current time:&nbsp;{new Date().toISOString()}</div>
         </div>
         {transactions.data.map((it: any, k) => (
           <div
@@ -90,9 +90,9 @@ function App() {
         ))}
       </div>
       <div className="w-full max-w-100">
-        <div className="text-[28px] font-bold p-1">
-          Latest blocks {blocks.busy ? "Loading..." : ""}
-          <div className="text-sm font-[400]">Current time:&nbsp;{new Date().toISOString()}</div>
+        <div className="p-1">
+          <span className="text-[28px] font-bold">Latest blocks</span> {blocks.busy ? "Loading..." : ""}
+          <div className="text-sm">Current time:&nbsp;{new Date().toISOString()}</div>
         </div>
         {blocks.data.map((it: any, k) => (
           <div
