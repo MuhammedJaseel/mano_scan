@@ -34,7 +34,9 @@ function App() {
   const [utc, setutc] = useState("");
 
   useEffect(() => {
-    loadData();
+    loadAccounts();
+    loadTransactions();
+    loadBlocks();
     // setInterval(() => {
     //   loadData();
     // }, 5000);
@@ -44,9 +46,36 @@ function App() {
     }, 1000);
   }, []);
 
+  useEffect(() => {
+    // const ws = new WebSocket("ws://localhost:4511");
+    const ws = new WebSocket("wss://manoscan-api.vercel.app");
+
+    ws.onopen = () => {
+      console.log("Connected to WebSocket server");
+    };
+
+    ws.onmessage = (event) => {
+      const data = JSON.parse(event.data);
+      console.log(data.msg);
+      if (data.msg === "block_added") {
+        loadAccounts();
+        loadBlocks();
+      }
+      if (data.msg === "txn_added") {
+        loadAccounts();
+        loadTransactions();
+      }
+    };
+
+    ws.onerror = (err) => console.error("WebSocket error:", err);
+    ws.onclose = () => console.log("Disconnected");
+
+    return () => ws.close();
+  }, []);
+
   const apiBase = "https://manoscan-api.vercel.app/api/";
   // const apiBase = "http://localhost:4511/api/";
-  const loadData = async () => {
+  const loadAccounts = async () => {
     try {
       axios.get(apiBase + "accounts").then((res) => {
         setaccounts({
@@ -55,6 +84,12 @@ function App() {
           updatedAt: new Date().toISOString(),
         });
       });
+    } catch (err) {
+      console.error("API Error:", err);
+    }
+  };
+  const loadTransactions = async () => {
+    try {
       axios.get(apiBase + "transactions").then((res) => {
         settransactions({
           ...res.data,
@@ -62,6 +97,12 @@ function App() {
           updatedAt: new Date().toISOString(),
         });
       });
+    } catch (err) {
+      console.error("API Error:", err);
+    }
+  };
+  const loadBlocks = async () => {
+    try {
       axios.get(apiBase + "blocks").then((res) => {
         setblocks({
           ...res.data,
