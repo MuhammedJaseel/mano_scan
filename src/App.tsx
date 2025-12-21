@@ -13,13 +13,13 @@ function showHex(hash: string) {
 }
 
 function App() {
-  const [accounts, setaccounts] = useState({ totel: 0, data: [], busy: false });
+  const [accounts, setaccounts] = useState({ totel: 0, data: [], busy: true });
   const [transactions, settransactions] = useState({
     totel: 0,
     data: [],
-    busy: false,
+    busy: true,
   });
-  const [blocks, setblocks] = useState({ totel: 0, data: [], busy: false });
+  const [blocks, setblocks] = useState({ totel: 0, data: [], busy: true });
 
   useEffect(() => {
     setTimeout(() => {
@@ -49,6 +49,7 @@ function App() {
       <div className="w-full max-w-100">
         <div className="text-[28px] font-bold p-1">
           Latest accounts {accounts.busy ? "Loading..." : ""}
+          <div className="text-sm font-[400]">Current time:&nbsp;{new Date().toISOString()}</div>
         </div>
         {accounts.data.map((it: any, k) => (
           <div
@@ -72,6 +73,7 @@ function App() {
       <div className="w-full max-w-100">
         <div className="text-[28px] font-bold p-1">
           Latest transactions {transactions.busy ? "Loading..." : ""}
+          <div className="text-sm font-[400]">Current time:&nbsp;{new Date().toISOString()}</div>
         </div>
         {transactions.data.map((it: any, k) => (
           <div
@@ -90,6 +92,7 @@ function App() {
       <div className="w-full max-w-100">
         <div className="text-[28px] font-bold p-1">
           Latest blocks {blocks.busy ? "Loading..." : ""}
+          <div className="text-sm font-[400]">Current time:&nbsp;{new Date().toISOString()}</div>
         </div>
         {blocks.data.map((it: any, k) => (
           <div
