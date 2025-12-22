@@ -50,13 +50,10 @@ function App() {
     // const ws = new WebSocket("ws://localhost:4511");
     const ws = new WebSocket("wss://manoscan-api.vercel.app");
 
-    ws.onopen = () => {
-      console.log("Connected to WebSocket server");
-    };
+    ws.onopen = () => {};
 
     ws.onmessage = (event) => {
       const data = JSON.parse(event.data);
-      console.log(data.msg);
       if (data.msg === "block_added") {
         loadAccounts();
         loadBlocks();
@@ -84,9 +81,7 @@ function App() {
           updatedAt: new Date().toISOString(),
         });
       });
-    } catch (err) {
-      console.error("API Error:", err);
-    }
+    } catch (err) {}
   };
   const loadTransactions = async () => {
     try {
@@ -97,9 +92,7 @@ function App() {
           updatedAt: new Date().toISOString(),
         });
       });
-    } catch (err) {
-      console.error("API Error:", err);
-    }
+    } catch (err) {}
   };
   const loadBlocks = async () => {
     try {
@@ -110,9 +103,7 @@ function App() {
           updatedAt: new Date().toISOString(),
         });
       });
-    } catch (err) {
-      console.error("API Error:", err);
-    }
+    } catch (err) {}
   };
 
   return (
@@ -123,7 +114,9 @@ function App() {
           <div className="p-1">
             <span className="text-[28px] font-bold">Latest accounts</span>{" "}
             {accounts.busy ? "Loading..." : ""}
-            <div className="text-sm">Updated At:&nbsp;{accounts.updatedAt}</div>
+            <div className="text-sm">
+              Updated At:&nbsp;{accounts.updatedAt.slice(0, 19)}
+            </div>
           </div>
           {accounts.data.map((it: any, k) => (
             <div
@@ -149,7 +142,7 @@ function App() {
             <span className="text-[28px] font-bold">Latest transactions</span>{" "}
             {transactions.busy ? "Loading..." : ""}
             <div className="text-sm">
-              Updated At:&nbsp;{transactions.updatedAt}
+              Updated At:&nbsp;{transactions.updatedAt.slice(0, 19)}
             </div>
           </div>
           {transactions.data.map((it: any, k) => (
@@ -162,6 +155,7 @@ function App() {
               <div>To: {showHex(it?.t)}</div>
               <div>Value: {ethers.formatEther(it?.v || "0n")}&nbsp;MANO</div>
               <div>Estimat Gas: {ethers.formatEther(it?.gu || "0n")}</div>
+              <div>Block: {it?.bn}</div>
               <div>Time: {it?.ca}</div>
             </div>
           ))}
@@ -170,7 +164,9 @@ function App() {
           <div className="p-1">
             <span className="text-[28px] font-bold">Latest blocks</span>{" "}
             {blocks.busy ? "Loading..." : ""}
-            <div className="text-sm">Updated At:&nbsp;{blocks.updatedAt}</div>
+            <div className="text-sm">
+              Updated At:&nbsp;{blocks.updatedAt.slice(0, 19)}
+            </div>
           </div>
           {blocks.data.map((it: any, k) => (
             <div
