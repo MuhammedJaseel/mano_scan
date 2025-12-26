@@ -31,7 +31,7 @@ function App() {
     busy: true,
     updatedAt: "",
   });
-  const [utc, setutc] = useState("");
+  const [now, setnow] = useState("");
 
   useEffect(() => {
     loadAccounts();
@@ -41,8 +41,7 @@ function App() {
     //   loadData();
     // }, 5000);
     setInterval(() => {
-      const now = new Date();
-      setutc(now.toISOString().slice(0, 19));
+      setnow(new Date().toLocaleString());
     }, 1000);
   }, []);
 
@@ -78,7 +77,7 @@ function App() {
         setaccounts({
           ...res.data,
           busy: false,
-          updatedAt: new Date().toISOString(),
+          updatedAt: new Date().toLocaleString(),
         });
       });
     } catch (err) {}
@@ -89,7 +88,7 @@ function App() {
         settransactions({
           ...res.data,
           busy: false,
-          updatedAt: new Date().toISOString(),
+          updatedAt: new Date().toLocaleString(),
         });
       });
     } catch (err) {}
@@ -100,7 +99,7 @@ function App() {
         setblocks({
           ...res.data,
           busy: false,
-          updatedAt: new Date().toISOString(),
+          updatedAt: new Date().toLocaleString(),
         });
       });
     } catch (err) {}
@@ -108,7 +107,7 @@ function App() {
 
   return (
     <div>
-      <div className="text-center pt-4">UTC Time:&nbsp;{utc}</div>
+      <div className="text-center pt-4">Time:&nbsp;{now}</div>
       <div className="w-screen flex justify-center items-start px-3 pb-3 gap-3 flex-wrap">
         <div className="w-full max-w-100">
           <div className="p-1">
