@@ -156,7 +156,7 @@ function App() {
               <div>Value: {ethers.formatEther(it?.v || "0n")}&nbsp;MANO</div>
               <div>Estimat Gas: {ethers.formatEther(it?.gu || "0n")}</div>
               <div>Block: {it?.bn}</div>
-              <div>Time: {it?.ca}</div>
+              <div>Time: {new Date(it?.ts || 0).toLocaleString()}</div>
             </div>
           ))}
         </div>
@@ -178,7 +178,7 @@ function App() {
               <div>Parent Hash: {showHex(it?.ph)}</div>
               <div>Balance: {ethers.formatEther(it?.bu || "0x0")}</div>
               <div>Txn Count: {it?.txns?.length}</div>
-              <div>Time: {it?.ca}</div>
+              <div>Time: {new Date(it?.ts || 0).toLocaleString()}</div>
             </div>
           ))}
         </div>
