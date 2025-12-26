@@ -177,7 +177,7 @@ function App() {
               <div>Block Hash: {showHex(it?.bh)}</div>
               <div>Parent Hash: {showHex(it?.ph)}</div>
               <div>Balance: {ethers.formatEther(it?.bu || "0x0")}</div>
-              <div>Txn Count: {it?.txns?.length}</div>
+              <div>Txn Count: {it?.txs?.length}</div>
               <div>Time: {new Date(it?.ts || 0).toLocaleString()}</div>
             </div>
           ))}
