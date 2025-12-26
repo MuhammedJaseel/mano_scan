@@ -157,6 +157,7 @@ function App() {
               <div>Estimat Gas: {ethers.formatEther(it?.gu || "0n")}</div>
               <div>Block: {it?.bn}</div>
               <div>Time: {new Date(it?.ts || 0).toLocaleString()}</div>
+              <div>Miner: {showHex(it?.m)}</div>
             </div>
           ))}
         </div>
