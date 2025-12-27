@@ -47,7 +47,7 @@ function App() {
 
   useEffect(() => {
     // const ws = new WebSocket("ws://localhost:4511");
-    const ws = new WebSocket("wss://manoscan-api.vercel.app");
+    const ws = new WebSocket("wss://api-scanm.anolabs.site");
 
     ws.onopen = () => {};
 
@@ -69,7 +69,7 @@ function App() {
     return () => ws.close();
   }, []);
 
-  const apiBase = "https://manoscan-api.vercel.app/api/";
+  const apiBase = "https://api-scanm.anolabs.site/api/";
   // const apiBase = "http://localhost:4511/api/";
   const loadAccounts = async () => {
     try {
